@@ -6,9 +6,9 @@ terraform {
     }
   }
   backend "gcs" {
-   bucket  = "riset-terraform-tfstate-bucket"
-   prefix  = "terraform/state"
- }
+    bucket = "riset-terraform-tfstate-bucket"
+    prefix = "terraform/state"
+  }
 }
 
 provider "google" {
@@ -22,14 +22,14 @@ resource "random_id" "bucket_prefix" {
 }
 
 resource "google_storage_bucket" "default_bucket" {
-  name = "riset-terraform-tfstate-bucket"
-  force_destroy = false
-  location = "ASIA-SOUTHEAST1"
+  name          = "riset-terraform-tfstate-bucket"
+  force_destroy = true
+  location      = "ASIA-SOUTHEAST1"
   storage_class = "STANDARD"
   versioning {
     enabled = true
   }
-  
+
 }
 
 resource "google_compute_network" "vpc_network" {
